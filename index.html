@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegemX</title>
+    <link rel="icon" href="./images/icon.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0;
+            color: #2d3748;
+            min-height: 100vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.597), rgba(255, 255, 255, 0.9)), 
+                        url('./images/a.webp') center/cover no-repeat;
+            background-attachment: fixed;
+            backdrop-filter: blur(8px);
+            line-height: 1.6;
+        }
+        
+        /* 导航栏样式 */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 30px;
+        }
+        
+        .nav-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #2d3748;
+            text-decoration: none;
+        }
+        
+        .regem {
+            color: #e53e3e;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-link {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: #e53e3e;
+            color: white;
+        }
+        
+        /* 页面容器 */
+        .page-container {
+            padding: 30px;
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Gallery Styles */
+        .gallery {
+            margin: 30px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        h1 {
+            font-size: 3.2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2d3748;
+            letter-spacing: -0.5px;
+        }
+        
+        .regem {
+            color: #e53e3e;
+            text-shadow: 0 2px 4px rgba(229, 62, 62, 0.1);
+        }
+        
+        .x {
+            color: #2d3748;
+            font-weight: 800;
+        }
+        
+        h2 {
+            color: #718096;
+            font-size: 1.4em;
+            font-weight: 400;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .server-info {
+            background: white;
+            padding: 45px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            animation: slideUp 0.8s ease-out 0.2s both;
+            position: relative;
+        }
+        
+        .server-info::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e53e3e, #ed8936, #38b2ac);
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .server-info p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #4a5568;
+        }
+        
+        .features {
+            margin-top: 35px;
+        }
+        
+        .features h3 {
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-size: 1.3em;
+            font-weight: 600;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .feature-item {
+            margin: 25px 0;
+            padding: 22px 25px;
+            background: #f7fafc;
+            color: #2d3748;
+            border-radius: 12px;
+            border-left: 4px solid #e53e3e;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        
+        .feature-item:hover {
+            transform: translateX(5px);
+            background: #edf2f7;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+            margin: 45px 0;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .server-info p:last-child {
+            text-align: center;
+            font-weight: 600;
+            color: #e53e3e;
+            font-size: 1.2em;
+            margin-top: 25px;
+            padding: 15px;
+            background: #fff5f5;
+            border-radius: 10px;
+            border: 1px solid #fed7d7;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .server-info {
+                padding: 30px 25px;
+            }
+            
+            .feature-item {
+                padding: 18px 20px;
+                margin: 20px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .server-info {
+                padding: 25px 20px;
+            }
+        }
+        
+        .team-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: white;
+            padding: 2px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #38b2ac, #ed8936, #e53e3e);
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .card h4 {
+            color: #2d3748;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        
+        .card p {
+            color: #4a5568;
+            font-weight: 500;
+            margin-bottom: 3px;
+            font-size: 0.9em;
+        }
+        
+        .card small {
+            color: #718096;
+            font-size: 0.9em;
+        }
+        
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: white !important;
+            background: #2d3748;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .card a:hover {
+            background: #e53e3e;
+            transform: translateY(-1px);
+        }
+        
+        @media (max-width: 768px) {
+            .team-cards {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('home')"><span class="regem">Regem</span><span class="x">X</span></a>
+            <ul class="nav-menu">
+                <li><a class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li><a class="nav-link" onclick="showPage('Advice')">Advice</a></li>
+                <li><a class="nav-link" onclick="showPage('team')">Team</a></li>
+                <li><a class="nav-link" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Page Container -->
+    <div class="page-container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <header>
+                <h1><span class="regem">Regem</span><span class="x">X</span></h1>
+                <h2>A Minecraft Server</h2>
+                <h2>About Rulegems</h2>
+            </header>
+
+            <!-- Gallery -->
+            <section class="gallery">
+                <h3 style="text-align:center;margin-bottom:20px;color:#2d3748;">Gallery</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="./images/1.webp" alt="服务器主城">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./images/2.webp" alt="玩家建筑">
+
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./images/3.webp" alt="宝石展示">
+
+                    </div>
+                    <div class="gallery-item">
+                        <img src="./images/4.webp" alt="活动合影">
+
+                    </div>
+                </div>
+            </section>
+            
+            <div class="server-info">
+                
+                <div class="features">
+                    <h3>Server Features</h3>
+                    <div class="feature-item">
+                        <strong>gems</strong> - You can find some power gems to gain power.
+                    </div>
+                    <div class="feature-item">
+                        <strong>land</strong> - You can protect your property territory with the protection plugin — land
+                    </div>
+                    <div class="feature-item">
+                        <strong>Free</strong> - You can use your imagination in this free world.
+                    </div>
+                    <div class="feature-item">
+                        <strong>Online</strong> - The server is online 24/7
+                    </div>
+                    <div class="feature-item">
+                        <strong>command</strong> - The server does not have /spawn /home /tpa
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Features Page -->
+        <div id="Advice" class="page">
+            <div class="server-info">
+                <h3 style="text-align: center; margin-bottom: 30px; color: #2d3748;">Advice</h3>
+                <a>For reference only</a>
+                
+                <div class="features">
+                    <div class="feature-item">
+                        <strong>Start looking for gems</strong> - you can use /gems to see more
+                    </div>
+                    <div class="feature-item">
+                        <a>Of course, you can also try to develop your base, and when you become strong, go looking for gems to enhance your power.</a>
+                    </div>
+                    <div class="feature-item">
+                        <a> can also choose to collaborate with others, develop together, and build a community.</a>
+                    </div>
+                    <div class="feature-item">
+                        <a> can also choose to open a voice room on Discord to communicate more effectively with other players.</a>
+                    </div>
+                    <h2>Let's begin.</h2>
+                    <h2>server IP:mc.regemx.org</h2>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Page -->
+        <div id="team" class="page">
+            <div class="server-info">
+                <h3 style="text-align: center; margin-bottom: 30px; color: #2d3748;">Server Administration Team</h3>
+                <p>Our professional maintenance team is dedicated to providing a stable and fair gaming environment.</p>
+                <div class="team-cards">
+                    <div class="card">
+                        <img src="https://angushushu.com/images/favicon32.ico" alt="Admin Avatar">
+                        <h4>Angushushu</h4>
+                        <a href="https://github.com/Angushushu" target="_blank" style="display:inline-block;margin-top:6px;color:#fff;background:#333;padding:4px 8px;border-radius:4px;text-decoration:none;font-size:12px;">GitHub</a>
+                        <a href="https://angushushu.com" target="_blank" style="display:inline-block;margin-top:6px;color:#fff;background:#ff4500;padding:4px 8px;border-radius:4px;text-decoration:none;font-size:12px;">web</a>
+                        <a href="mailto:angushushu@outlook.com" style="display:inline-block;margin-top:6px;color:#fff;background:#0078d4;padding:4px 8px;border-radius:4px;text-decoration:none;font-size:12px;">Email</a>
+                    </div>
+                    <div class="card">
+                        <img src="./images/TANGUMM.png" alt="Admin Avatar">
+                        <h4>XNTX(CLUMM)</h4>
+                        <a href="https://github.com/CHIUSTC" target="_blank" style="display:inline-block;margin-top:6px;color:#fff;background:#333;padding:4px 8px;border-radius:4px;text-decoration:none;font-size:12px;">GitHub</a>
+                        <a href="https://me.clumm.top" target="_blank" style="display:inline-block;margin-top:6px;color:#fff;background:#ff4500;padding:4px 8px;border-radius:4px;text-decoration:none;font-size:12px;">web</a>
+                        <a href="mailto:Mcofprc@outlook.com" style="display:inline-block;margin-top:6px;color:#fff;background:#0078d4;padding:4px 8px;border-radius:4px;text-decoration:none;font-size:12px;">Email</a>
+                    </div>
+                    <div class="card">
+                        <h4>Addy</h4>
+                        <a href="https://github.com/sunfish1728" target="_blank" style="display:inline-block;margin-top:6px;color:#fff;background:#333;padding:4px 8px;border-radius:4px;text-decoration:none;font-size:12px;">GitHub</a>
+                        <a href="mailto:hhjjuuiioop55443@gmail.com" style="display:inline-block;margin-top:6px;color:#fff;background:#0078d4;padding:4px 8px;border-radius:4px;text-decoration:none;font-size:12px;">Email</a>
+                    </div>
+                    <div class="card">
+                        <h4>henrynph</h4>
+                        <a href="https://github.com/henrynph" target="_blank" style="display:inline-block;margin-top:6px;color:#fff;background:#333;padding:4px 8px;border-radius:4px;text-decoration:none;font-size:12px;">GitHub</a>
+                        <a href="mailto:henrunph@gmail.com" style="display:inline-block;margin-top:6px;color:#fff;background:#0078d4;padding:4px 8px;border-radius:4px;text-decoration:none;font-size:12px;">Email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    
+        
+        <!-- Contact Page -->
+        <div id="contact" class="page">
+            <div class="server-info">
+                <h3 style="text-align: center; margin-bottom: 30px; color: #2d3748;">Contact Us</h3>
+                
+                <div class="features">
+                    <div class="feature-item">
+                        <strong>Server IP</strong> - mc.regemx.org
+                    </div>
+                    <div class="feature-item">
+                        <strong>Discord Community</strong> - https://discord.gg/WWQSppxDWa
+                    </div>
+                    <div class="feature-item">
+                        <strong>QQ</strong> - https://qm.qq.com/q/caVZGSf8VG (中国版)
+                    </d>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 页面切换功能
+        function showPage(pageId) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // 显示选中的页面
+            document.getElementById(pageId).classList.add('active');
+            
+            // 更新导航链接激活状态
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // 设置当前页面链接为激活状态
+            event.target.classList.add('active');
+        }
+        
+        // 默认显示首页
+        window.onload = function() {
+            showPage('home');
+        }
+    </script>
+</body>
+</html>
+
