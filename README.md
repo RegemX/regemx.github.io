@@ -12,3 +12,7 @@ Admins can directly maintain announcements, events, download links, and document
 - Main directories / 主要目录：  
   ├─ `index.html` Homepage / 首页  
   └─ `images/` Images & static assets / 图片与静态资源
+
+文件编写日期：2025/12/26 22:07(北京时间)
+Document Creation Date：2025/12/26 22:07 (Beijing Time)
+
