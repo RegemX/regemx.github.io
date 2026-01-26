@@ -17,8 +17,8 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Darken background slightly to make text pop without box */
-    background: rgba(0, 0, 0, 0.4);
+    /* Gradient: Dark Top -> Pure Black Bottom */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.9) 75%, #000 100%);
     z-index: 1;
     pointer-events: none;
 }
@@ -371,4 +371,89 @@ h2 {
     color: #ddd;
     font-weight: 500;
     font-size: 1rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+    /* TYPOGRAPHY */
+    h1.logo {
+        font-size: 3.5rem;
+        letter-spacing: -1px;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    /* LAYOUT */
+    .content-box {
+        padding: 30px 20px;
+        width: 90%;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+        /* Stronger shadow for mobile readability */
+    }
+
+    .server-ip {
+        font-size: 1.1rem;
+        padding: 12px 25px;
+    }
+
+    /* GRIDS */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .gallery-grid img {
+        height: 140px;
+    }
+
+    .team-grid {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .card {
+        width: 40%;
+    }
+
+    .feature-list {
+        font-size: 1rem;
+    }
+
+    /* NAV DOTS - Move to bottom */
+    .slider-nav {
+        top: auto;
+        bottom: 300px;
+        /* Above dock */
+        right: 50%;
+        transform: translateX(50%);
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* DOCK */
+    #dock-container {
+        height: 220px;
+    }
+
+    /* Slightly smaller dock area */
+
+    /* TOOLTIP */
+    .mc-tooltip h3 {
+        font-size: 1.2rem;
+    }
+
+    .tt-desc {
+        font-size: 0.8rem;
+    }
 }

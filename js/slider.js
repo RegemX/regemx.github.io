@@ -87,7 +87,36 @@ window.addEventListener('wheel', (e) => {
         updateDots(prevIndex);
     }
 });
+// SWIPE SUPPORT
+let touchStartX = 0;
+let touchEndX = 0;
 
+window.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+window.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const threshold = 50;
+    if (touchEndX < touchStartX - threshold) {
+        // Swipe Left -> Next Slide
+        if (currentIndex >= slideCount + 1) return;
+        const nextIndex = currentIndex + 1;
+        moveTrack(nextIndex);
+        updateDots(nextIndex);
+    }
+    if (touchEndX > touchStartX + threshold) {
+        // Swipe Right -> Prev Slide
+        if (currentIndex <= 0) return;
+        const prevIndex = currentIndex - 1;
+        moveTrack(prevIndex);
+        updateDots(prevIndex);
+    }
+}
 
 // LIGHTBOX
 const lightbox = document.getElementById('lightbox');

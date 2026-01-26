@@ -19,9 +19,10 @@ function init() {
 
     scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
-    // Adjusted: Higher up to match water perspective
-    camera.position.set(0, 3.0, 15);
+    // TELEPHOTO LENS (Low FOV to flatten perspective)
+    camera = new THREE.PerspectiveCamera(10, width / height, 0.1, 200);
+    // Adjusted: Further back + Zoomed in = Parallel vertical lines
+    camera.position.set(0, 5, 55);
     // Look lower to keep dock centered
     camera.lookAt(0, -2.0, 0);
 
