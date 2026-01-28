@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RegemX</title>
+    <title>Gemocracy</title>
     <link rel="icon" href="./images/icon.png" type="image/png">
     <style>
         * {
@@ -51,6 +51,8 @@
             font-weight: 700;
             color: #2d3748;
             text-decoration: none;
+            font-family: 'Cormorant Unicase', serif;
+            font-weight: 700;
         }
 
         .regem {
@@ -201,6 +203,7 @@
             margin-bottom: 15px;
             color: #2d3748;
             letter-spacing: -0.5px;
+            font-family: 'Cormorant Unicase', serif;
         }
 
         .regem {
@@ -210,7 +213,7 @@
 
         .x {
             color: #2d3748;
-            font-weight: 800;
+            font-weight: 700;
         }
 
         h2 {
@@ -440,6 +443,8 @@
                 padding: 20px;
             }
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700&family=Outfit:wght@300;400;500&display=swap');
     </style>
 </head>
 
@@ -447,8 +452,8 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo" onclick="showPage('home')"><span class="regem">Regem</span><span
-                    class="x">X</span></a>
+            <a href="#" class="logo" onclick="showPage('home')"><span class="regem">Gem</span><span
+                    class="x">ocracy</span></a>
 
             <!-- Hamburger Menu Button (Mobile Only) -->
             <div class="hamburger" onclick="toggleMenu()">
@@ -459,6 +464,7 @@
 
             <ul class="nav-menu">
                 <li><a class="nav-link active" onclick="showPage('home', event)">Home</a></li>
+                <li><a class="nav-link" onclick="showPage('philosophy', event)">Philosophy</a></li>
                 <li><a class="nav-link" onclick="showPage('Advice', event)">Advice</a></li>
                 <li><a class="nav-link" onclick="showPage('team', event)">Team</a></li>
                 <li><a class="nav-link" onclick="showPage('contact', event)">Contact</a></li>
@@ -471,7 +477,7 @@
         <!-- Home Page -->
         <div id="home" class="page active">
             <header>
-                <h1><span class="regem">Regem</span><span class="x">X</span></h1>
+                <h1><span class="regem">Gem</span><span class="x">ocracy</span></h1>
                 <h2>A Minecraft Server</h2>
                 <h2>About Rulegems</h2>
             </header>
@@ -504,10 +510,10 @@
                 </div>
                 <div>
                     <strong>Gems are crucial on the server—they grant you the power to rule, and that’s the very charm
-                        of RegemX.</strong>
+                        of Gemocracy.</strong>
                 </div>
                 <div>
-                    our github: <a href="https://github.com/RegemX">RegemX</a>
+                    our github: <a href="https://github.com/RegemX">Gemocracy</a>
 
                 </div>
 
@@ -529,6 +535,56 @@
                     <div class="feature-item">
                         <strong>command</strong> - The server does not have /spawn /home /tpa
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Philosophy Page -->
+        <div id="philosophy" class="page">
+            <div class="server-info">
+                <h3 style="text-align: center; margin-bottom: 30px; color: #2d3748;">The Logic of Power</h3>
+
+                <div class="features">
+                    <p><strong>Order from Chaos</strong></p>
+                    <p>We stand on the shoulders of giants like 2b2t. Anarchy servers offer ultimate freedom, but often
+                        devolve into a static state of chaos where equality means no one truly possesses the power to
+                        build lasting order. It is chaos without direction.</p>
+                    <p>We believe in a living, breathing hierarchy. A world where a ruling class exists to establish
+                        order, but that ruling class is never permanent. Power must be earned, defended, and inevitably,
+                        lost.</p>
+
+                    <hr>
+
+                    <p><strong>The RuleGems System</strong></p>
+                    <p>This is where <strong>RuleGems</strong> comes in. Seven ancient artifacts are scattered across
+                        the world. They are not just items; they are keys to the server itself.</p>
+                    <div class="feature-item">
+                        <strong>Redemption</strong> - Finding and redeeming a Gem grants you administrative power. You
+                        become one of the <strong>Rulers</strong> (Server Admins).
+                    </div>
+                    <div class="feature-item">
+                        <strong>Circulation</strong> - Once redeemed, the Gem does not stay with you. It vanishes and
+                        respawns randomly in the world, waiting for the next ambitious player.
+                    </div>
+                    <div class="feature-item">
+                        <strong>Revolution</strong> - Your power is not safe. Any player who finds a respawned Gem can
+                        redeem it to challenge the status quo, potentially overturning existing Rulers.
+                    </div>
+
+                    <hr>
+
+                    <p><strong>Your Choice</strong></p>
+                    <p>In Gemocracy, the political landscape is defined by the players:</p>
+                    <ul style="list-style: none; padding-left: 0; color: #4a5568; font-size: 1.1em;">
+                        <li style="margin-bottom: 10px;">⚔️ <strong>Usurper:</strong> Find the gems to overthrow the
+                            rulers.</li>
+                        <li style="margin-bottom: 10px;">🛡️ <strong>Loyalist:</strong> Find the gems and return to the
+                            rulers to secure their regime.</li>
+                        <li style="margin-bottom: 10px;">👁️ <strong>Watcher:</strong> Observe the chaos as dynasties
+                            rise and fall.</li>
+                    </ul>
+                    <p style="margin-top: 20px; text-align: center; font-style: italic; color: #718096;">"In Gemocracy,
+                        the admins are not gods. They are players. And they can be replaced."</p>
                 </div>
             </div>
         </div>
@@ -556,7 +612,7 @@
                         more effectively with other players.
                     </div>
                     <h2>Let's begin.</h2>
-                    <h2>server IP:mc.regemx.org</h2>
+                    <h2>server IP:mc.gemocracy.org</h2>
                 </div>
             </div>
         </div>
@@ -614,7 +670,7 @@
 
                 <div class="features">
                     <div class="feature-item">
-                        <strong>Server IP</strong> - mc.regemx.org
+                        <strong>Server IP</strong> - mc.gemocracy.org
                     </div>
                     <div class="feature-item">
                         <strong>Discord Community</strong> - https://discord.gg/WWQSppxDWa

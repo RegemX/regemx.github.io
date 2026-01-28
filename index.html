@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>RegemX - Minecraft Server</title>
+    <title>Gemocracy - Minecraft Server</title>
     <link rel="icon" href="./images/icon.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script type="importmap">
         {
@@ -28,6 +29,7 @@
         <div class="dot" onclick="goToSlide(1)"></div>
         <div class="dot" onclick="goToSlide(2)"></div>
         <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
     </div>
 
     <!-- SLIDER WRAPPER -->
@@ -37,15 +39,45 @@
             <!-- HOME -->
             <div class="slide">
                 <div class="content-box home-box">
-                    <h1 class="logo">REGEM<span class="regem-x">X</span></h1>
+                    <h1 class="logo"><span class="brand-highlight">Gem</span>ocracy</h1>
                     <p class="subtitle">NO ADMINS. YOU RULE.</p>
-                    <div class="server-ip" onclick="navigator.clipboard.writeText('mc.regemx.org');alert('IP Copied!')">
-                        MC.REGEMX.ORG
+                    <div class="server-ip" onclick="copyIP()">
+                        MC.GEMOCRACY.ORG
                     </div>
                     <div class="social-links" style="margin-top:30px">
-                        <a href="https://discord.gg/WWQSppxDWa" target="_blank" class="btn">DISCORD</a>
-                        <a href="https://github.com/RegemX" target="_blank" class="btn">GITHUB</a>
-                        <a href="https://qm.qq.com/q/caVZGSf8VG" target="_blank" class="btn">QQ</a>
+                        <a href="https://discord.gg/WWQSppxDWa" target="_blank" class="btn"><i
+                                class="fab fa-discord"></i> Discord</a>
+                        <a href="https://github.com/RegemX" target="_blank" class="btn"><i class="fab fa-github"></i>
+                            Github</a>
+                        <a href="https://qm.qq.com/q/caVZGSf8VG" target="_blank" class="btn"><i class="fab fa-qq"></i>
+                            QQ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHILOSOPHY -->
+            <div class="slide">
+                <div class="content-box">
+                    <h2>THE META</h2>
+                    <div style="font-size: 1.1rem; line-height: 1.8; color: #ddd;">
+                        <p style="margin-bottom: 25px;">
+                            <strong>PHYSICAL POWER</strong><br>
+                            Anarchy usually means no rules. Here, <span style="color: #fff;">you are the rules</span>.
+                            We turned server permissions into physical items. Power is something you can find, steal,
+                            and lose.
+                        </p>
+                        <p style="margin-bottom: 25px;">
+                            <strong>THE 7 GEMS</strong><br>
+                            <span style="color: #e53e3e; font-weight: 600;">7 Ancient Gems</span> exist in the world,
+                            each granting specific administrative powers.
+                            They are scarce. They are the only law. And they are scattered in the wilderness.
+                        </p>
+                        <p>
+                            <strong>ETERNAL REVOLUTION</strong><br>
+                            Rulers are not gods. Once a Gem is used, the power cycles. The Gem respawns randomly in the
+                            world.
+                            Stability is impossible. <span style="color: #e53e3e;">Revolution is inevitable.</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -55,10 +87,11 @@
                 <div class="content-box">
                     <h2>FEATURES</h2>
                     <ul class="feature-list">
-                        <li><strong>GEMS</strong> - Earn gems to rule the world.</li>
-                        <li><strong>LAND</strong> - Protect your territory.</li>
-                        <li><strong>METRO</strong> - Player-built transport system.</li>
-                        <li><strong>RAW</strong> - No /home, no /tpa. True survival.</li>
+                        <li><strong>THE 7 CROWNS</strong> - Find the Gems. Become the Admin. Lose it all.</li>
+                        <li><strong>EMPIRE BUILDING</strong> - Claim your land. Build your fortress. Defend your legacy.
+                        </li>
+                        <li><strong>THE METRO</strong> - A player-built underground highway connecting the chaos.</li>
+                        <li><strong>RAW SURVIVAL</strong> - No TP. No Home. No Mercy. Just you and the world.</li>
                     </ul>
                 </div>
             </div>
@@ -66,7 +99,7 @@
             <!-- GALLERY -->
             <div class="slide">
                 <div class="content-box">
-                    <h2>VISUALS</h2>
+                    <h2>GALLERY</h2>
                     <div class="gallery-grid">
                         <img src="./images/1.webp">
                         <img src="./images/2.webp">
@@ -125,6 +158,17 @@
         <img class="lightbox-content" id="lightbox-img">
     </div>
 
+    <!-- TOAST -->
+    <div id="toast">IP Copied!</div>
+
+    <script>
+        function copyIP() {
+            navigator.clipboard.writeText('mc.gemocracy.org');
+            const toast = document.getElementById('toast');
+            toast.className = 'show';
+            setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+    </script>
 </body>
 
 </html>
